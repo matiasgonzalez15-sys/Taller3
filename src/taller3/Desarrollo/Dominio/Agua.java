@@ -18,7 +18,7 @@ public class Agua extends Hechizo {
 		return presionAgua;
 	}
 
-	@Override
+	@Override //Calcula la puntuaciion con los atributos del agua
 	public void calcularPuntuacion() {
 		this.puntuacion = (this.daño + this.cantidadHeal + this.presionAgua)*2;
 	}
