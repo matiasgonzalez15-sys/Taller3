@@ -9,8 +9,6 @@ public class Planta extends Hechizo {
 		super(nombre, tipo, daño);
 		this.duracionStun = duracionStun;
 		this.cantPlantas = cantPlantas;
-		
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getDuracionStun() {
@@ -23,8 +21,18 @@ public class Planta extends Hechizo {
 
 	@Override
 	public void calcularPuntuacion() {
-		setPuntuacion(getDaño() + (duracionStun * cantPlantas));
-
+		this.puntuacion = this.daño + (this.duracionStun * this.cantPlantas);
+		
 	}
+
+	public void setDuracionStun(int duracionStun) {
+		this.duracionStun = duracionStun;
+	}
+
+	public void setCantPlantas(int cantPlantas) {
+		this.cantPlantas = cantPlantas;
+	}
+	
+	
 
 }
