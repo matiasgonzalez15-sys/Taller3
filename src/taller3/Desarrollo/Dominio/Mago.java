@@ -1,7 +1,5 @@
 package Dominio;
 
-
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class Mago {
 	public Mago(String nombre) {
 		this.nombre = nombre;
 		this.hechizos = new LinkedList<Hechizo>();
-		this.setPuntuacion(0);
+		this.puntuacion = 0;
 	}
 
 	public String getNombre() {
@@ -34,17 +32,39 @@ public class Mago {
 		for(Hechizo h : hechizos) {
 			contador += h.getPuntuacion();
 		}
-		this.setPuntuacion(contador);
+		this.puntuacion = contador;
 		
 	}
 
-	private void setPuntuacion(int contador) {
-		// TODO Auto-generated method stub
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void mostrarHechizos() {
+		System.out.println();
+		System.out.println("=== HECHIZOS DEL MAGO ===");
+		for(Hechizo h : hechizos) {
+			System.out.println("- " + h.getNombre() +" || Tipo: " + h.getTipo());
+		}
+		
+	}
+
+	public void eliminarHechizo(Hechizo h) {
+		hechizos.remove(h);
+		System.out.println("Se elimino un hechizo a " + this.nombre);
+	}
+
+	public void eliminarHechizos() {
+		hechizos.clear();
 		
 	}
 
 	public int getPuntuacion() {
 		return puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
 	}
 
 	
