@@ -79,8 +79,7 @@ public class SistemaImpl implements Sistema {
 			int cantPlantas = Integer.valueOf(partes2[1]);
 			h = new Planta(nombre, tipo, daño, duracionStun, cantPlantas);
 		} else {
-			System.out.println("No existe el tipo.");
-
+			throw new Exception("Tipo invalido");
 		}
 
 		if (h != null) {
@@ -214,7 +213,7 @@ public class SistemaImpl implements Sistema {
 				int cantPlantas = Integer.valueOf(partes[4]);
 				h = new Planta(nombre, tipo, daño, duracionStun, cantPlantas);
 			} else {
-				System.out.println("No existe el tipo.");
+				throw new Exception("Tipo invalido.");
 
 			}
 			if (h != null) {
@@ -535,5 +534,4 @@ public class SistemaImpl implements Sistema {
 		bw.close();
 		
 	}
-
 }
