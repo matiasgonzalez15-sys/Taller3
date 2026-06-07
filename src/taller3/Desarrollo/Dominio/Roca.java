@@ -1,4 +1,4 @@
-package taller3;
+package Dominio;
 
 public class Roca extends Hechizo {
 	private int mejoraDefensa;
