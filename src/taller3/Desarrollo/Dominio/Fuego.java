@@ -12,7 +12,7 @@ public class Fuego extends Hechizo {
 		return duracionQuemadura;
 	}
 
-	@Override
+	@Override // Calcula la puntuacion de los atributos del fuego
 	public void calcularPuntuacion() {
 		this.puntuacion = duracionQuemadura * this.daño;;
 		
