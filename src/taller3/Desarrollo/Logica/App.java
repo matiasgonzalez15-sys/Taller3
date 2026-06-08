@@ -17,6 +17,8 @@ public class App {
 	private static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) throws Exception {
+		// Maximiliano Edhin Abd-El-Kader Gongora 22.128.215-9 - ICCI
+		// Matías Ignacio González Gómez 22.350.340-3 - ICCI
 		leerHechizos();
 		leerMagos();
 		menuPrincipal();
