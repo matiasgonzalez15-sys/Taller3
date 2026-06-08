@@ -18,8 +18,10 @@ public class SistemaImpl implements Sistema {
 		this.hechizos = new LinkedList<Hechizo>();
 		
 	}
-	
-	@Override
+	/* Segun los datos enviados desde el App de Magos.txt, se crea el mago o no.
+	Si es que se puede crear, le agrega los hechizos correspondientes si es que existe. Donde finalmente
+	se le agrega a la lista de magos. Si es que hay algun dato no valido, se manda Exception*/
+	@Override 
 	public void crearMago(String nombre, String listaHechizos) throws Exception {
 
 		if (nombre == null || nombre.isEmpty()) {
@@ -37,7 +39,7 @@ public class SistemaImpl implements Sistema {
 		magos.add(m);
 
 	}
-
+	// Segun el nombre de un hechizo, se busca en la lista, retornando el hechizo si es que existe o retornando null si no existe
 	private Hechizo buscarHechizo(String hechizo) {
 		for (Hechizo h : hechizos) {
 			if (h.getNombre().equalsIgnoreCase(hechizo)) {
@@ -46,7 +48,10 @@ public class SistemaImpl implements Sistema {
 		}
 		return null;
 	}
-
+	/*
+	Segun los datos enviados desde App de Hechizos.txt, se procesan los datos para crear un hechizo de distintos tipos
+	y guardarlo en su lista. Si lo enviado esta vacio, se manda excepcion como dato invalido
+	*/
 	@Override
 	public void crearHechizo(String[] partes) throws Exception {
 		if (partes.length == 0) {
@@ -88,7 +93,12 @@ public class SistemaImpl implements Sistema {
 		}
 
 	}
-
+	/* Segun los datos que ingreso el usuario, procesa los datos para poder crear
+	el mago que el usuario quiera y se le agregan los hechizos
+	si es que existen que el usuario ingreso, donde finalmente se le calcula
+	la puntuacion. De caso contrario, manda excepcion.
+	*/
+	
 	@Override
 	public void agregarMago(String nombre, String listaHechizos) throws Exception {
 		if (nombre == null || nombre.equals("")) {
@@ -117,7 +127,9 @@ public class SistemaImpl implements Sistema {
 		}
 		return null;
 	}
-
+	/* Segun los datos que mando el usuario desde App, se modifica el NOMBRE del mago
+	ingresado por el usuario. De caso contrario se manda excepcion.
+	*/
 	@Override
 	public void modificarMago(String nombre, String nombreNuevo) throws Exception {
 		if (nombre == null || nombre.equals("")) {
@@ -142,7 +154,7 @@ public class SistemaImpl implements Sistema {
 		guardarMagos();
 
 	}
-
+	// Se valida el tipo del hechizo, retornando true o false
 	private boolean validarTipo(String tipoNuevo) {
 		if (tipoNuevo == null) {
 			return false;
@@ -152,7 +164,7 @@ public class SistemaImpl implements Sistema {
 		}
 		return true;
 	}
-
+	// Se busca al mago por su nombre, retornandolo si es que lo encuentra o retornando null si es que no.
 	private Mago buscarMago(String nombre) {
 		for (Mago m : magos) {
 			if (m.getNombre().equalsIgnoreCase(nombre)) {
@@ -161,7 +173,7 @@ public class SistemaImpl implements Sistema {
 		}
 		return null;
 	}
-
+	// Elimina el mago que el usuario ingreso de la lista de los magos. Si ingreso algo no valido, se manda excepcion.
 	@Override
 	public void eliminarMago(String nombre) throws Exception {
 		if (nombre == null || nombre.equals("")) {
@@ -177,7 +189,11 @@ public class SistemaImpl implements Sistema {
 		}
 		guardarMagos();
 	}
-
+	/*
+	Segun los datos que envio el usuario desde App, se crea un hechizo con sus distintos
+	atributos, si es que logra crear, se agrega a la lista de los hechizos. Caso contrario, manda
+	excepcion.
+	*/
 	@Override
 	public void agregarHechizo(String hechizo) throws Exception {
 		if (hechizo == null || hechizo.isEmpty()) {
@@ -229,7 +245,10 @@ public class SistemaImpl implements Sistema {
 
 	}
 
-
+	/* Segun el dato que se mando desde App, se elimina el hechizo de los magos que lo tengan
+	y tambien se elimina de la lista de los hechizos si es que existe. Si se ingreso un dato no valido, 
+	se manda excepcion.
+	*/
 	@Override
 	public void eliminarHechizo(String nombre) throws Exception {
 		if (nombre == null || nombre.equals("")) {
@@ -247,7 +266,7 @@ public class SistemaImpl implements Sistema {
 		guardarMagos();
 
 	}
-
+	// Busca el hechizo a eliminar en los magos para eliminarlo de sus listas de cada uno.
 	private void buscarHechizoMagos(String nombre) {
 		for (Mago m : magos) {
 			for (Hechizo h : m.getHechizos()) {
@@ -261,7 +280,7 @@ public class SistemaImpl implements Sistema {
 		}
 
 	}
-
+	// muestra los 10 mejores hechizos con mayor puntuacion
 	@Override
 	public void mostrarDiezHechizos() {
 	    List<Hechizo> ordenados = new LinkedList<>(hechizos);
@@ -281,7 +300,7 @@ public class SistemaImpl implements Sistema {
 	    }
 
 	}
-
+	// muestra los 3 magos con mayor puntuacion
 	@Override
 	public void mostrarTresMagos() {
 	    List<Mago> ordenados = new LinkedList<>(magos);
@@ -301,7 +320,7 @@ public class SistemaImpl implements Sistema {
 	    }
 
 	}
-
+	// muestra todos los hechizos existentes
 	@Override
 	public void mostrarHechizos() {
 	    System.out.println("=== TODOS LOS HECHIZOS ===");
@@ -310,7 +329,7 @@ public class SistemaImpl implements Sistema {
 	    }
 
 	}
-
+	// muestra todos los magos existentes
 	@Override
 	public void mostrarMagos(){
 		int c = 1;
@@ -320,7 +339,7 @@ public class SistemaImpl implements Sistema {
 		}
 
 	}
-
+	// muestra todos los hechizos con su respectiva puntuacion
 	@Override
 	public void mostrarHechizosPuntuacion(){
 	    System.out.println("=== HECHIZOS CON PUNTUACION ===");
@@ -329,7 +348,7 @@ public class SistemaImpl implements Sistema {
 	    }
 
 	}
-
+	// muestra todos los magos con su respectiva puntuacion
 	@Override
 	public void mostrarMagosPuntuacion() {
 	    System.out.println("=== MAGOS CON PUNTUACION ===");
@@ -338,7 +357,7 @@ public class SistemaImpl implements Sistema {
 	    }
 
 	}
-
+	// se modifican los hechizos del mago a modificar que el usuario ingreso desde el App
 	@Override
 	public void modificarHechizoMago(String nombre, String listaHechizos) throws Exception {
 		Mago m = buscarMago(nombre);
@@ -360,7 +379,7 @@ public class SistemaImpl implements Sistema {
 		guardarMagos();
 
 	}
-
+	// se verifican si todos los hechizos que quieren poner el usuario en el mago a modificar existen
 	private boolean verificarHechizos(String[] partes) {
 		int c = 0;
 		for (int i = 0; i < partes.length; i++) {
@@ -376,7 +395,7 @@ public class SistemaImpl implements Sistema {
 		}
 		return false;
 	}
-
+	// se modifica el nombre del hechizo
 	@Override
 	public void modificarHechizoNombre(String nombre, String nombreNuevo) throws Exception {
 		if(nombre == null || nombre.equals("") || nombreNuevo == null || nombreNuevo.equals("") ) {
@@ -393,7 +412,7 @@ public class SistemaImpl implements Sistema {
 		guardarHechizos();
 		
 	}
-
+	// se modifica el daño del hechizo
 	@Override
 	public void modificarHechizoDaño(String nombre, int dañoNuevo) throws Exception {
 		if(nombre == null || nombre.equals("") || dañoNuevo < 0 ) {
@@ -409,7 +428,11 @@ public class SistemaImpl implements Sistema {
 		}
 		guardarHechizos();
 	}
-
+	/* Se modifica el tipo del hechizo con sus respectivos atributos, quitando de la lista
+	el hechizo a modificar y agregando un nuevo hechizo con su nuevo tipo y nuevos atributos,
+	donde despues de ese proceso, en los magos que tengan el hechizo que se modifico, se le reemplaza
+	en su lista por el hechizo nuevo
+	*/
 	@Override
 	public void modificarHechizoTipo(String nombre, String tipoNuevo, int extra) throws Exception {
 		if(nombre == null || nombre.equals("") || tipoNuevo == null || tipoNuevo.equals("") ) {
@@ -447,7 +470,11 @@ public class SistemaImpl implements Sistema {
 		
 		
 	}
-
+	/* Se modifica el tipo del hechizo con sus respectivos atributos, quitando de la lista
+	el hechizo a modificar y agregando un nuevo hechizo con su nuevo tipo y nuevos atributos,
+	donde despues de ese proceso, en los magos que tengan el hechizo que se modifico, se le reemplaza
+	en su lista por el hechizo nuevo
+	*/
 	@Override
 	public void modificarHechizoTipo(String nombre, String tipoNuevo, int extra, int extra2) throws Exception {
 		if(nombre == null || nombre.equals("") || tipoNuevo == null || tipoNuevo.equals("") ) {
@@ -484,7 +511,7 @@ public class SistemaImpl implements Sistema {
 		guardarMagos();
 		
 	}
-
+	// Va modificando despues de cada actualizacion el archivo de magos.txt
 	@Override
 	public void guardarMagos() throws Exception {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("Magos.txt"));
@@ -506,7 +533,7 @@ public class SistemaImpl implements Sistema {
 		bw.close();
 		
 	}
-
+	// se va modificando despues de cada actualizacion el archivo de hechizos.txg
 	@Override
 	public void guardarHechizos() throws Exception {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("Hechizos.txt"));
