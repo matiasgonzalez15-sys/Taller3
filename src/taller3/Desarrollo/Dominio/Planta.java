@@ -18,7 +18,7 @@ public class Planta extends Hechizo {
 	public int getCantPlantas() {
 		return cantPlantas;
 	}
-
+	// calcula la puntuacion de sus atributos de planta
 	@Override
 	public void calcularPuntuacion() {
 		this.puntuacion = this.daño + (this.duracionStun * this.cantPlantas);
