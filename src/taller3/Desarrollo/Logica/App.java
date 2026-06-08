@@ -22,7 +22,7 @@ public class App {
 		menuPrincipal();
 
 	}
-
+	// lee hechizos.txt y le manda los datos al sistema
 	private static void leerHechizos() throws Exception {
 		File arch = new File("Hechizos.txt");
 		Scanner lector = new Scanner(arch);
@@ -33,7 +33,7 @@ public class App {
 		}
 
 	}
-
+	// lee magos.txt y le manda los datos al sistema
 	private static void leerMagos() throws Exception {
 		File arch = new File("Magos.txt");
 		Scanner lector = new Scanner(arch);
@@ -47,7 +47,7 @@ public class App {
 		}
 
 	}
-
+	// acceso al menu principal
 	private static void menuPrincipal() throws Exception {
 		System.out.println();
 		int opcion = -1;
@@ -78,7 +78,7 @@ public class App {
 		}
 		System.out.println();
 	}
-
+	// acceso al menu analista para mostrar lo que pide
 	private static void menuAnalista() throws Exception {
 		int opcion = -1;
 		while (opcion != 7) {
@@ -123,7 +123,7 @@ public class App {
 	
 
 	}
-
+	// acceso al menu de administrador para realizar distintas acciones
 	private static void menuAdministrador() throws Exception {
 		int opcion = -1;
 		while (opcion != 7) {
@@ -167,7 +167,11 @@ public class App {
 		}
 
 	}
-
+	/* Se le pide entradas al usuario segun lo que quiera
+	modificar del hechizo, donde cada dato se va validando de alguna
+	forma, para despues esos datos mandarlos al sistema para ver si es que
+	puede realizar o no su modificacion
+	*/
 	private static void modificarHechizo() {
 		try {
 			String nombreNuevo = "";
@@ -268,7 +272,7 @@ public class App {
 		
 		
 	}
-
+	// Se llama al sistema dependiendo si es que se le cambio el nombre al hechizo o no.
 	private static void comprobarNombre(String nombre, String nombreNuevo, String cambiarNombre, String tipoNuevo, int extra) throws Exception {
 		if(cambiarNombre.equals("si")) {
 			sistema.modificarHechizoTipo(nombreNuevo, tipoNuevo, extra);
@@ -278,7 +282,9 @@ public class App {
 		}
 		
 	}
-
+	/* Se llama al sistema dependiendo si es que se le cambio el nombre al hechizo o no. A diferencia del anterior, es
+	para cuando tienen 2 extras (Tipo Agua y tipo Planta)
+	*/
 	private static void comprobarNombre(String nombre, String nombreNuevo, String cambiarNombre, String tipoNuevo, int extra, int extra2) throws Exception {
 		if(cambiarNombre.equals("si")) {
 			sistema.modificarHechizoTipo(nombreNuevo, tipoNuevo, extra, extra2);
@@ -288,7 +294,11 @@ public class App {
 		}
 		
 	}
-
+	/* Se le pide entradas al usuario para poder crear un hechizo segun lo que el desee.
+	Las entradas que se le piden son los atributos de cualquier hechizo y los atributos que tiene
+	segun el tipo que el usuario que desee. Despues se llama al sistema para comprobar su creacion y 
+	crearlo posteriormente.
+	*/
 	private static void agregarHechizo() throws Exception {
 		try {
 		System.out.println();
@@ -309,7 +319,11 @@ public class App {
 		
 		
 	}
-
+	/* Se le piden entradas al usuario distintas preguntas para poder modificar un mago.
+	El usuario elige que es lo que quiere modificar, donde pasando algunas validaciones de datos lo logra hacer
+	o no. En estos tambien puede modificar cuantos y cuales hechizos tendra el mago a modificar. Datos que posteriormente,
+	son enviados al sistema.
+	*/
 	private static void modificarMago() {
 		try {
 			String nombreNuevo = null;
@@ -377,7 +391,7 @@ public class App {
 			System.out.println("No valido --> " + e.getMessage());
 		}
 	}
-
+	//Manda al sistema el hechizo que el usuario quiera eliminar.
 	private static void eliminarHechizo() throws Exception {
 		System.out.println();
 		System.out.print("Ingrese el nombre del hechizo a eliminar: ");
@@ -385,7 +399,7 @@ public class App {
 		sistema.eliminarHechizo(nombre);
 
 	}
-
+	// Manda al sistema el mago que el usuario quiera eliminar
 	private static void eliminarMago() throws Exception {
 		System.out.println();
 		System.out.print("Ingrese el nombre del mago a eliminar: ");
@@ -393,7 +407,9 @@ public class App {
 		sistema.eliminarMago(nombre);
 
 	}
-
+	/* Se le pide al usuario los atributos que tienen los magos para poder crear uno nuevo.
+	Posteriormente, todos esos datos se los manda al sistema para poder crear o no el mago.
+	*/
 	private static void agregarMago() throws Exception {
 		try {
 			int cantHechizos = 0;
@@ -434,7 +450,8 @@ public class App {
 
 		return true;
 	}
-
+	/* Segun el tipo del hechizo, se le piden entradas al usuario los atributos correspondientes
+	al tipo, y se le retorna en forma de String*/
 	private static String itemsExtras(String tipo) {
 		if (tipo != null) {
 			if (tipo.equalsIgnoreCase("Agua")) {
@@ -467,7 +484,7 @@ public class App {
 
 		return null;
 	}
-
+	// Valida si el tipo de los hechizos es correcto
 	private static String validarTipo(String tipo) {
 		if (tipo.equals("agua")) {
 			return "Agua";
