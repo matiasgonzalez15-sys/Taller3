@@ -11,7 +11,7 @@ public class Roca extends Hechizo {
 	public int getMejoraDefensa() {
 		return mejoraDefensa;
 	}
-
+	// calcula la puntuacion de sus atributos de roca
 	@Override
 	public void calcularPuntuacion() {
 		this.puntuacion = (this.daño * this.mejoraDefensa) / 2 ;
